@@ -33,7 +33,7 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     /// The color of the handles on the side of the view
-    @IBInspectable public var handleColor: UIColor = UIColor.gray {
+    @IBInspectable public var handleColor: UIColor = UIColor.clear {
         didSet {
            updateHandleColor()
         }
@@ -64,8 +64,8 @@ public protocol TrimmerViewDelegate: AnyObject {
     private let leftHandleView = HandlerView()
     private let rightHandleView = HandlerView()
     private let positionBar = UIView()
-    private let leftHandleKnob = UIView()
-    private let rightHandleKnob = UIView()
+    private let leftHandleKnob = UIImageView()
+    private let rightHandleKnob = UIImageView()
     private let leftMaskView = UIView()
     private let rightMaskView = UIView()
 
@@ -136,8 +136,10 @@ public protocol TrimmerViewDelegate: AnyObject {
         leftHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         leftHandleView.addSubview(leftHandleKnob)
 
+        leftHandleKnob.image = UIImage(named: "chevron.left")
+        leftHandleKnob.backgroundColor = .clear
         leftHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-        leftHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        leftHandleKnob.widthAnchor.constraint(equalTo: leftHandleView.widthAnchor).isActive = true
         leftHandleKnob.centerYAnchor.constraint(equalTo: leftHandleView.centerYAnchor).isActive = true
         leftHandleKnob.centerXAnchor.constraint(equalTo: leftHandleView.centerXAnchor).isActive = true
 
@@ -154,8 +156,10 @@ public protocol TrimmerViewDelegate: AnyObject {
         rightHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         rightHandleView.addSubview(rightHandleKnob)
 
+        rightHandleKnob.image = UIImage(named: "chevron.right")
+        rightHandleKnob.backgroundColor = .clear
         rightHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-        rightHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        rightHandleKnob.widthAnchor.constraint(equalTo: rightHandleView.widthAnchor).isActive = true
         rightHandleKnob.centerYAnchor.constraint(equalTo: rightHandleView.centerYAnchor).isActive = true
         rightHandleKnob.centerXAnchor.constraint(equalTo: rightHandleView.centerXAnchor).isActive = true
     }
